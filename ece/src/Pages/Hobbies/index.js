@@ -5,9 +5,20 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 
 export default function Hobbies() {
-  return (
+  const [loader,setLoader]=useState(true);
+  const[Hobby,setHobby]=useState(null)
+
+  let connectToServer = async () => axios.get('http://localhost:8000/Hobbies')
+                                          .then(res=>{
+                                            console.log(res);
+                                          }).catch(err=>console.log(err))
+
+connectToServer();
+return (
     <ImageList sx={{ width: 500, height: 450 }}>
       <ImageListItem key="Subheader" cols={2}>
         <ListSubheader component="div">December</ListSubheader>

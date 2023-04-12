@@ -2,7 +2,7 @@ import {useState,useEffect} from 'react';
 import axios from 'axios';
 import { Typography } from '@mui/material';
 
-export default function Aboutus(){
+export default function Contactme(){
 const [loader,setLoader] = useState(true);
     const [aboutus,setAboutus] = useState(null);
 

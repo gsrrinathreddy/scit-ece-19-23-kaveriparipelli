@@ -4,7 +4,22 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
+import {useState,useEffect} from 'react';
+import axios from 'axios';
+import { Typography } from '@mui/material';
+export default function Workshops(){
+const [loader,setLoader] = useState(true);
+    const [Workshops,setWorkshops] = useState(null);
+    const connectToServer = async  () => axios.get('http://localhost:8000/Workshops')
+                                            .then(res=>{
+                                        
+                                                console.log(res.data);
+                                                setWorkshops(res.data);
+                                                setLoader(false)
+                                            }).catch(err=>console.log(err))
+useEffect(()=>{
+   connectToServer();
+},[])
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -41,9 +56,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
-
-export default function Workshops() {
-  const [expanded, setExpanded] = React.useState('panel1');
+const [expanded, setExpanded] = React.useState('panel1');
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -53,11 +66,11 @@ export default function Workshops() {
     <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Workshop1</Typography>
+          <Typography>Workshops</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-           Image processing using matlab
+           Audio watermarking via emd
          </Typography>
         </AccordionDetails>
       </Accordion>

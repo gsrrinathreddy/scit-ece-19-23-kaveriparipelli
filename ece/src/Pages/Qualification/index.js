@@ -5,12 +5,13 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
 import {useState,useEffect} from 'react';
 import axios from 'axios';
+import { Typography } from '@mui/material';
+
 export default function Qualification(){
 const [loader,setLoader] = useState(true);
-    const [qual,setQualification] = useState(null);
+    const [Qualification,setQualification] = useState(null);
 
     const connectToServer = async  () => axios.get('http://localhost:8000/Qualification')
                                             .then(res=>{
@@ -24,7 +25,7 @@ useEffect(()=>{
 },[])
     return(
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', p: 3}}>
-      <h1 className='mode'>Qualifications</h1>
+      <h1 className='mode'>Qualification</h1>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Kaveri" src="https://th.bing.com/th/id/OIP.RYfMgXrtO8xT7uFNOqBo0wAAAA?w=157&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" />

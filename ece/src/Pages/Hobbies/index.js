@@ -10,12 +10,14 @@ import axios from 'axios';
 
 export default function Hobbies() {
   const [loader,setLoader]=useState(true);
-  const[Hobby,setHobby]=useState(null)
+  const[Hobbies,setHobbies]=useState(null)
 
   let connectToServer = async () => axios.get('http://localhost:8000/Hobbies')
                                           .then(res=>{
                                             console.log(res);
-                                          }).catch(err=>console.log(err))
+                                            setHobbies(res.data);
+                                            setLoader(false)
+                                        }).catch(err=>console.log(err))
 
 connectToServer();
 return (

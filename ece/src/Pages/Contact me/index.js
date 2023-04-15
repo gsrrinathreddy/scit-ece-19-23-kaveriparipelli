@@ -4,13 +4,13 @@ import { Typography } from '@mui/material';
 
 export default function Contactme(){
 const [loader,setLoader] = useState(true);
-    const [aboutus,setAboutus] = useState(null);
+    const [Contactme,setContactme] = useState(null);
 
-    const connectToServer = async  () => axios.get('http://localhost:8000/Aboutme')
+    const connectToServer = async  () => axios.get('http://localhost:8000/Contactme')
                                             .then(res=>{
                                         
                                                 console.log(res.data);
-                                                setAboutus(res.data);
+                                                setContactme(res.data);
                                                 setLoader(false)
                                             }).catch(err=>console.log(err))
 useEffect(()=>{

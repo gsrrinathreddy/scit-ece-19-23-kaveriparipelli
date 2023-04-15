@@ -4,7 +4,22 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
+import {useState,useEffect} from 'react';
+import axios from 'axios';
+import { Typography } from '@mui/material';
+export default function Experience(){
+const [loader,setLoader] = useState(true);
+    const [Experience,setExperience] = useState(null);
+    const connectToServer = async  () => axios.get('http://localhost:8000/Experience')
+                                            .then(res=>{
+                                        
+                                                console.log(res.data);
+                                                setExperience(res.data);
+                                                setLoader(false)
+                                            }).catch(err=>console.log(err))
+useEffect(()=>{
+   connectToServer();
+},[])
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -41,9 +56,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
-
-export default function Experience() {
-  const [expanded, setExpanded] = React.useState('panel1');
+const [expanded, setExpanded] = React.useState('panel1');
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);

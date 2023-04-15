@@ -4,8 +4,23 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
+import {useState,useEffect} from 'react';
+import axios from 'axios';
+import { Typography } from '@mui/material';
 
+export default function Certifications(){
+const [loader,setLoader] = useState(true);
+    const [certifications,setCertications] = useState(null);
+    const connectToServer = async  () => axios.get('http://localhost:8000/Certifications')
+                                            .then(res=>{
+                                        
+                                                console.log(res.data);
+                                                setCertications(res.data);
+                                                setLoader(false)
+                                            }).catch(err=>console.log(err))
+useEffect(()=>{
+   connectToServer();
+},[])
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -42,7 +57,6 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-export default function Certifications() {
   const [expanded, setExpanded] = React.useState('panel1');
 
   const handleChange = (panel) => (event, newExpanded) => {

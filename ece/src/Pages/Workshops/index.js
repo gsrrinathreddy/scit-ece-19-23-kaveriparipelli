@@ -70,7 +70,7 @@ const [expanded, setExpanded] = React.useState('panel1');
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-           Audio watermarking via emd
+           Image processing using matlab
          </Typography>
         </AccordionDetails>
       </Accordion>
